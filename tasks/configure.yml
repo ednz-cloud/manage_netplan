@@ -1,0 +1,13 @@
+---
+# task/configure file for manage_netplan
+- name: "Configuring Netplan"
+  ansible.builtin.template:
+    src: etc_netplan.yaml.j2
+    dest: "{{ manage_netplan_config_file }}"
+    mode: '0644'
+    owner: root
+    group: root
+    backup: true
+  when: manage_netplan_configuration != []
+  notify:
+    - "Generate netplan configuration"
