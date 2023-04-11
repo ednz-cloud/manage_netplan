@@ -3,5 +3,5 @@
   hosts: all
   tasks:
     - name: "Include ednxzu.manage_netplan"
-      include_role:
+      ansible.builtin.include_role:
         name: "ednxzu.manage_netplan"
