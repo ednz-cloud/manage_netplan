@@ -10,4 +10,4 @@
     backup: true
   when: manage_netplan_configuration != []
   notify:
-    - "Generate netplan configuration"
+    - "netplan-generate"
