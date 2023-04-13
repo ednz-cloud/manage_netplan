@@ -2,11 +2,13 @@
 # handlers file for manage_netplan
 - name: "Generate netplan configuration"
   ansible.builtin.command: netplan generate
+  changed_when: false
   listen: "netplan-generate"
   notify:
     - "netplan-apply"
 
 - name: "Apply netplan configuration"
   ansible.builtin.command: netplan apply
+  changed_when: false
   listen: "netplan-apply"
   when: manage_netplan_apply
