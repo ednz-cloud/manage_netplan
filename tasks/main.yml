@@ -5,7 +5,7 @@
 
 - name: "Import install.yml"
   ansible.builtin.include_tasks: install.yml
-  when: manage_netplan_check_install
+  when: manage_netplan_install
 
 - name: "Import remove_existing.yml"
   ansible.builtin.include_tasks: remove_existing.yml
