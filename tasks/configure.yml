@@ -11,3 +11,4 @@
   when: manage_netplan_configuration != []
   notify:
     - "netplan-generate"
+    - "netplan-apply"
