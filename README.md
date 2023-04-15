@@ -47,7 +47,7 @@ This variable defines whether or not to apply the netplan configuration once it 
 ```yaml
 manage_netplan_configuration: {} # by default, set to {}
 ```
-This variable contains the content of your netplan file in yml format. This what will be used to generate the configuration file on the target host.
+This variable contains the content of your netplan file in yml format. This what will be used to generate the configuration file on the target host. An example file for this variable is available in `files/netplan_conf_example.yml`.
 
 
 Dependencies
