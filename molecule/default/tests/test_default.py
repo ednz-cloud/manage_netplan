@@ -16,3 +16,12 @@ def test_netplan_storage(host):
     assert etc_netplan.user == "root"
     assert etc_netplan.group =="root"
     assert etc_netplan.mode == 0o755
+
+def test_netplan_config_file(host):
+    """Validate netplan config file."""
+    etc_netplan_config = host.file("/etc/netplan/ansible-config.yaml")
+    assert etc_netplan_config.exists
+    assert etc_netplan_config.user == "root"
+    assert etc_netplan_config.group == "root"
+    assert etc_netplan_config.mode == 0o644
+    assert etc_netplan_config.content_string != ""

@@ -1,6 +1,6 @@
 ---
 # task/configure file for manage_netplan
-- name: "Configuring Netplan"
+- name: "Copy netplan configuration template into {{ manage_netplan_config_file }}"
   ansible.builtin.template:
     src: etc_netplan.yaml.j2
     dest: "{{ manage_netplan_config_file }}"

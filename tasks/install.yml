@@ -12,3 +12,11 @@
   vars:
     manage_apt_packages_list: "{{ manage_netplan_networkmanager_pkg }}"
   when: manage_netplan_renderer == 'NetworkManager'
+
+- name: "Create directory /etc/netplan"
+  ansible.builtin.file:
+    path: "/etc/netplan"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: '0755'
