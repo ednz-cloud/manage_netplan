@@ -20,29 +20,29 @@
 
     - name: "Test: directory /tmp"
       block:
-        - name: "Stat directory /tmp"
+        - name: "Stat directory /etc/netplan"
           ansible.builtin.stat:
-            path: "/tmp"
-          register: stat_tmp
+            path: "/etc/netplan"
+          register: stat_etc_netplan
 
         - name: "Stat file /tmp/ansible-config.yaml"
           ansible.builtin.stat:
-            path: "/tmp/netplan/ansible-config.yaml"
+            path: "/tmp/ansible-config.yaml"
           register: stat_tmp_ansible_config_yml
 
         - name: "Slurp file /tmp/ansible-config.yaml"
           ansible.builtin.slurp:
-            src: "/tmp/netplan/ansible-config.yaml"
+            src: "/tmp/ansible-config.yaml"
           register: slurp_tmp_ansible_config_yml
 
         - name: "Verify directory /tmp/netplan"
           ansible.builtin.assert:
             that:
-              - stat_tmp.stat.exists
-              - stat_tmp.stat.isdir
-              - stat_tmp.stat.pw_name == 'root'
-              - stat_tmp.stat.gr_name == 'root'
-              - stat_tmp.stat.mode == '0755'
+              - stat_etc_netplan.stat.exists
+              - stat_etc_netplan.stat.isdir
+              - stat_etc_netplan.stat.pw_name == 'root'
+              - stat_etc_netplan.stat.gr_name == 'root'
+              - stat_etc_netplan.stat.mode == '0755'
               - stat_tmp_ansible_config_yml.stat.exists
               - stat_tmp_ansible_config_yml.stat.isreg
               - stat_tmp_ansible_config_yml.stat.pw_name == 'root'
