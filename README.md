@@ -1,6 +1,6 @@
 manage_netplan
 =========
-> This repository is only a mirror. Development and testing is done on a private gitlab server.
+> This repository is only a mirror. Development and testing is done on a private gitea server.
 
 This role install and configure network interfaces using netplan for **debian-based** distributions.
 
