@@ -1,8 +1,5 @@
 ---
 # task/main file for manage_netplan
-- name: "Import prerequisites.yml"
-  ansible.builtin.include_tasks: prerequisites.yml
-
 - name: "Import install.yml"
   ansible.builtin.include_tasks: install.yml
   when: manage_netplan_install

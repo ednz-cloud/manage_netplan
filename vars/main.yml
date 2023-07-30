@@ -1,7 +1,5 @@
 ---
 # vars file for manage_netplan
-manage_netplan_prerequisites_roles:
-  - ednxzu.manage_apt_packages
 manage_netplan_packages:
   - name: netplan.io
     version: latest

@@ -52,7 +52,7 @@ This variable contains the content of your netplan file in yml format. This what
 Dependencies
 ------------
 
-This role has a task that installs its own dependencies located in `task/prerequisites.yml`, so that you don't need to manage them. This role requires `ednxzu.manage_apt_packages` to install netplan and eventually network-manager if needed.
+`ednxzu.manage_apt_packages` to install needed packages for netplan.
 
 Example Playbook
 ----------------
