@@ -5,6 +5,7 @@
     paths: /etc/netplan
     patterns: "*.yml,*.yaml"
   register: _netplan_configs
+  become: true
 
 - name: "Removing existing configurations"
   ansible.builtin.file:
@@ -13,3 +14,4 @@
   loop: "{{ _netplan_configs['files'] }}"
   when: item['path'] != manage_netplan_config_file
     and manage_netplan_configuration != []
+  become: true

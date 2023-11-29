@@ -3,6 +3,7 @@
 - name: "Generate netplan configuration"
   ansible.builtin.command: netplan generate
   changed_when: false
+  become: true
   listen: "netplan-generate"
 
 - name: "Apply netplan configuration"
@@ -10,3 +11,4 @@
   listen: "netplan-apply"
   changed_when: false
   when: manage_netplan_apply
+  become: true
