@@ -9,7 +9,6 @@
     group: root
     backup: true
   when: manage_netplan_configuration != []
-  become: true
   notify:
     - "netplan-generate"
     - "netplan-apply"
