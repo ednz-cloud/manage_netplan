@@ -3,6 +3,6 @@
   hosts: all
   become: true
   tasks:
-    - name: "Include ednxzu.manage_netplan"
+    - name: "Include ednz_cloud.manage_netplan"
       ansible.builtin.include_role:
-        name: "ednxzu.manage_netplan"
+        name: "ednz_cloud.manage_netplan"

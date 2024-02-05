@@ -52,7 +52,7 @@ This variable contains the content of your netplan file in yml format. This what
 Dependencies
 ------------
 
-`ednxzu.manage_apt_packages` to install needed packages for netplan.
+`ednz_cloud.manage_apt_packages` to install needed packages for netplan.
 
 Example Playbook
 ----------------
@@ -61,7 +61,7 @@ Example Playbook
 # calling the role inside a playbook with either the default or group_vars/host_vars
 - hosts: servers
   roles:
-    - ednxzu.manage_netplan
+    - ednz_cloud.manage_netplan
 ```
 
 License
