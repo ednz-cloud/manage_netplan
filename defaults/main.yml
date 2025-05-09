@@ -1,14 +1,51 @@
 ---
 # defaults file for manage_netplan
 
-# title: netplan configuration file
+# title: Netplan configuration file
 # description-lines:
-# This file is used to configure the netplan module.
+# Specifies the file path for the Netplan configuration.
+# The file must have a .yaml extension, as some Netplan versions may not support .yml.
 # required: true
 manage_netplan_config_file: /etc/netplan/ansible-config.yaml
-manage_netplan_renderer: networkd # supported value is 'NetworkManager' or 'networkd'
+
+# title: Netplan renderer
+# description-lines:
+# Defines the backend used by Netplan to apply network settings.
+# Possible values are 'NetworkManager' or 'networkd'.
+# required: true
+manage_netplan_renderer: networkd
+
+# title: Remove existing configurations
+# description-lines:
+# Determines whether to delete all existing Netplan configurations before applying new ones.
+# Set to true to remove all configurations in /etc/netplan.
+# required: true
 manage_netplan_remove_existing: false
+
+# title: Netplan search domain
+# description-lines:
+# Sets the search domain for hostname resolution in the Netplan configuration.
+# The search domain is used for resolving unqualified hostnames.
+# required: true
 manage_netplan_search_domain: example.org
+
+# title: Manage Netplan installation
+# description-lines:
+# Controls whether the Netplan package should be installed.
+# Set to true to ensure Netplan is installed.
+# required: true
 manage_netplan_install: true
+
+# title: Apply Netplan configuration
+# description-lines:
+# Specifies whether to apply the Netplan configuration after changes are made.
+# Set to true to automatically apply the configuration.
+# required: true
 manage_netplan_apply: false
+
+# title: Netplan configuration
+# description-lines:
+# Defines the Netplan configuration as a dictionary.
+# Use this to specify the desired network settings.
+# required: true
 manage_netplan_configuration: {}
