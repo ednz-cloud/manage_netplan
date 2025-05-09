@@ -1,5 +1,9 @@
 ---
 # vars file for manage_netplan
+
+# title: netplan configuration file
+# description: This file is used to configure the netplan module.
+# required: true
 manage_netplan_packages:
   - name: netplan.io
     version: latest

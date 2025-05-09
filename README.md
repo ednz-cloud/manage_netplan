@@ -1,75 +1,123 @@
-manage_netplan
-=========
-> This repository is only a mirror. Development and testing is done on a private gitea server.
+<!-- DOCSIBLE START -->
 
-This role install and configure network interfaces using netplan for **debian-based** distributions.
+# 📃 Role overview
 
-Requirements
-------------
+## manage_netplan
 
-None.
 
-Role Variables
---------------
 
-Available variables are listed below, along with default values. A sample file for the default values is available in `default/hashicorp_consul.yml.sample` in case you need it for any `group_vars` or `host_vars` configuration.
+Description: Install and configure network interfaces using netplan for debian-based distros.
 
-```yaml
-manage_netplan_config_file: /etc/netplan/ansible-config.yaml # by default, set to /etc/netplan/ansible-config.yaml
-```
-This variable defines the path and file name that'll be used to copy over the netplan configuration.
 
-```yaml
-manage_netplan_renderer: networkd # by default, set to networkd
-```
-This variable defines the renderer that'll be used by netplan. Defaults to `networkd`, but `NetworkManager` is also an option.
+| Field                | Value           |
+|--------------------- |-----------------|
+| Readme update        | 09/05/2025 |
 
-```yaml
-manage_netplan_remove_existing: false # by default, set to false
-```
-This variable defines whether or not to remove all existing netplan configuration when applying the new one. Defaults to `false`.
 
-```yaml
-manage_netplan_search_domain: example.org #by default, set to example.org
-```
-This variable defines the search domain to use in case you want to specify dns resolution inside of your netplan configuration. This can be left untouched if you do not intend to use it.
 
-```yaml
-manage_netplan_install: true # by default, set to true
-```
-This variable defines whether or not to install netplan and related packages when running this role. It is recommended to not change it to ensure that netplan and eventually NetworkManager are installed. If you are already making sure that these packages are installed elsewhere, you can set this to `false`.
 
-```yaml
-manage_netplan_apply: true # by default, set to true
-```
-This variable defines whether or not to apply the netplan configuration once it has been written to the target system. Defaults to `true`.
 
-```yaml
-manage_netplan_configuration: {} # by default, set to {}
-```
-This variable contains the content of your netplan file in yml format. This what will be used to generate the configuration file on the target host. An example file for this variable is available in `files/netplan_conf_example.yml`.
 
-Dependencies
-------------
 
-`ednz_cloud.manage_apt_packages` to install needed packages for netplan.
 
-Example Playbook
-----------------
+### Defaults
 
-```yaml
-# calling the role inside a playbook with either the default or group_vars/host_vars
-- hosts: servers
-  roles:
-    - ednz_cloud.manage_netplan
-```
+**These are static variables with lower priority**
 
-License
--------
+#### File: defaults/main.yml
 
-MIT / BSD
+| Var          | Type         | Value       |Required    | Title       |
+|--------------|--------------|-------------|-------------|-------------|
+| [manage_netplan_config_file](defaults/main.yml#L7)   | str   | `/etc/netplan/ansible-config.yaml` |    true  |  netplan configuration file |
+| [manage_netplan_renderer](defaults/main.yml#L8)   | str   | `networkd` |    None  |  None |
+| [manage_netplan_remove_existing](defaults/main.yml#L9)   | bool   | `False` |    None  |  None |
+| [manage_netplan_search_domain](defaults/main.yml#L10)   | str   | `example.org` |    None  |  None |
+| [manage_netplan_install](defaults/main.yml#L11)   | bool   | `True` |    None  |  None |
+| [manage_netplan_apply](defaults/main.yml#L12)   | bool   | `False` |    None  |  None |
+| [manage_netplan_configuration](defaults/main.yml#L13)   | dict   | `{}` |    None  |  None |
+<details>
+<summary><b>🖇️ Full descriptions for vars in defaults/main.yml</b></summary>
+<br>
+<b>manage_netplan_config_file:</b> This file is used to configure the netplan module.
+<br>
+<br>
+</details>
 
-Author Information
-------------------
 
-This role was created by Bertrand Lanson in 2023.
+### Vars
+
+**These are variables with higher priority**
+#### File: vars/main.yml
+
+| Var          | Type         | Value       |Required    | Title       |
+|--------------|--------------|-------------|-------------|-------------|
+| [manage_netplan_packages](vars/main.yml#L7)   | list   | `[{'name': 'netplan.io', 'version': 'latest', 'state': 'present'}]` |    true  |  netplan configuration file |
+| [manage_netplan_networkmanager_pkg](vars/main.yml#L11)   | list   | `[{'name': 'network', 'version': 'latest', 'state': 'present'}]` |    None  |  None |
+<details>
+<summary><b>🖇️ Full Descriptions for vars in vars/main.yml</b></summary>
+<br>
+<b>manage_netplan_packages:</b> This file is used to configure the netplan module.
+<br>
+<br>
+</details>
+
+
+### Tasks
+
+
+#### File: tasks/configure.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | --------- |
+| Copy netplan configuration template into {{ manage_netplan_config_file }} | ansible.builtin.template | True |
+
+#### File: tasks/install.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | --------- |
+| Install netplan:latest | ansible.builtin.include_role | False |
+| Install network-manager:latest when used as renderer | ansible.builtin.include_role | True |
+| Create directory /etc/netplan | ansible.builtin.file | False |
+
+#### File: tasks/main.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | --------- |
+| Import install.yml | ansible.builtin.include_tasks | True |
+| Import remove_existing.yml | ansible.builtin.include_tasks | True |
+| Import configure.yml | ansible.builtin.include_tasks | False |
+
+#### File: tasks/remove_existing.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | --------- |
+| Capturing existing configurations | ansible.builtin.find | False |
+| Removing existing configurations | ansible.builtin.file | True |
+
+
+
+
+
+
+
+## Author Information
+Bertrand Lanson
+
+#### License
+
+license (BSD, MIT)
+
+#### Minimum Ansible Version
+
+2.10
+
+#### Platforms
+
+- **Ubuntu**: ['focal', 'jammy', 'noble']
+- **Debian**: ['bullseye', 'bookworm']
+
+
+#### Dependencies
+
+No dependencies specified.
+<!-- DOCSIBLE END -->
