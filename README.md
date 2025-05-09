@@ -28,17 +28,18 @@ Description: Install and configure network interfaces using netplan for debian-b
 
 | Var          | Type         | Value       |Required    | Title       |
 |--------------|--------------|-------------|-------------|-------------|
-| [manage_netplan_config_file](defaults/main.yml#L7)   | str   | `/etc/netplan/ansible-config.yaml` |    true  |  netplan configuration file |
-| [manage_netplan_renderer](defaults/main.yml#L8)   | str   | `networkd` |    None  |  None |
-| [manage_netplan_remove_existing](defaults/main.yml#L9)   | bool   | `False` |    None  |  None |
-| [manage_netplan_search_domain](defaults/main.yml#L10)   | str   | `example.org` |    None  |  None |
-| [manage_netplan_install](defaults/main.yml#L11)   | bool   | `True` |    None  |  None |
-| [manage_netplan_apply](defaults/main.yml#L12)   | bool   | `False` |    None  |  None |
-| [manage_netplan_configuration](defaults/main.yml#L13)   | dict   | `{}` |    None  |  None |
+| [manage_netplan_config_file](defaults/main.yml#L8)   | str   | `/etc/netplan/ansible-config.yaml` |    true  |  netplan configuration file |
+| [manage_netplan_renderer](defaults/main.yml#L9)   | str   | `networkd` |    None  |  None |
+| [manage_netplan_remove_existing](defaults/main.yml#L10)   | bool   | `False` |    None  |  None |
+| [manage_netplan_search_domain](defaults/main.yml#L11)   | str   | `example.org` |    None  |  None |
+| [manage_netplan_install](defaults/main.yml#L12)   | bool   | `True` |    None  |  None |
+| [manage_netplan_apply](defaults/main.yml#L13)   | bool   | `False` |    None  |  None |
+| [manage_netplan_configuration](defaults/main.yml#L14)   | dict   | `{}` |    None  |  None |
 <details>
 <summary><b>🖇️ Full descriptions for vars in defaults/main.yml</b></summary>
 <br>
-<b>manage_netplan_config_file:</b> This file is used to configure the netplan module.
+<b>manage_netplan_config_file:</b> This file is used to configure the netplan module.<br>
+required: true<br>
 <br>
 <br>
 </details>
