@@ -90,30 +90,34 @@ Use this to specify the desired network settings.<br>
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
-| Copy netplan configuration template into {{ manage_netplan_config_file }} | ansible.builtin.template | True |
+| Netplan ¦ Copy netplan configuration template into {{ manage_netplan_config_file }} | ansible.builtin.template | True |
+| Netplan ¦ Set generate-check and apply-check variables | ansible.builtin.set_fact | True |
 
 #### File: tasks/install.yml
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
-| Install netplan:latest | ansible.builtin.include_role | False |
-| Install network-manager:latest when used as renderer | ansible.builtin.include_role | True |
-| Create directory /etc/netplan | ansible.builtin.file | False |
+| Netplan ¦ Install netplan:latest | ansible.builtin.include_role | False |
+| Netplan ¦ Install network-manager:latest when used as renderer | ansible.builtin.include_role | True |
+| Netplan ¦ Create directory /etc/netplan | ansible.builtin.file | False |
 
 #### File: tasks/main.yml
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
-| Import install.yml | ansible.builtin.include_tasks | True |
-| Import remove_existing.yml | ansible.builtin.include_tasks | True |
-| Import configure.yml | ansible.builtin.include_tasks | False |
+| Netplan ¦ Set generate-check and apply-check variables | ansible.builtin.set_fact | False |
+| Netplan ¦ Import install.yml | ansible.builtin.include_tasks | True |
+| Netplan ¦ Import remove_existing.yml | ansible.builtin.include_tasks | True |
+| Netplan ¦ Import configure.yml | ansible.builtin.include_tasks | False |
+| Netplan ¦ Generate netplan configuration | ansible.builtin.command | True |
+| Netplan ¦ Apply netplan configuration | ansible.builtin.command | True |
 
 #### File: tasks/remove_existing.yml
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
-| Capturing existing configurations | ansible.builtin.find | False |
-| Removing existing configurations | ansible.builtin.file | True |
+| Netplan ¦ Fetch existing configurations | ansible.builtin.find | False |
+| Netplan ¦ Remove existing configurations | ansible.builtin.file | True |
 
 
 

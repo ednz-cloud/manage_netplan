@@ -1,12 +1,12 @@
 ---
 # task/remove_existing file for manage_netplan
-- name: "Capturing existing configurations"
+- name: "Netplan | Fetch existing configurations"
   ansible.builtin.find:
     paths: /etc/netplan
     patterns: "*.yml,*.yaml"
   register: _netplan_configs
 
-- name: "Removing existing configurations"
+- name: "Netplan | Remove existing configurations"
   ansible.builtin.file:
     path: "{{ item['path'] }}"
     state: absent

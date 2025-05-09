@@ -1,14 +1,20 @@
 ---
 # task/configure file for manage_netplan
-- name: "Copy netplan configuration template into {{ manage_netplan_config_file }}"
+- name: "Netplan | Copy netplan configuration template into {{ manage_netplan_config_file }}"
   ansible.builtin.template:
-    src: etc_netplan.yaml.j2
+    src: netplan.yaml.j2
     dest: "{{ manage_netplan_config_file }}"
-    mode: '0644'
+    mode: "0644"
     owner: root
     group: root
     backup: true
   when: manage_netplan_configuration != []
-  notify:
-    - "netplan-generate"
-    - "netplan-apply"
+  register: _manage_netplan_configuration
+
+- name: "Netplan | Set generate-check and apply-check variables"
+  ansible.builtin.set_fact:
+    _manage_netplan_need_generate: true
+    _manage_netplan_need_apply: true
+  when:
+    - _manage_netplan_configuration is defined
+    - _manage_netplan_configuration.changed
