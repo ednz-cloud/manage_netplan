@@ -70,12 +70,14 @@ Use this to specify the desired network settings.<br>
 
 | Var          | Type         | Value       |Required    | Title       |
 |--------------|--------------|-------------|-------------|-------------|
-| [manage_netplan_packages](vars/main.yml#L7)   | list   | `[{'name': 'netplan.io', 'version': 'latest', 'state': 'present'}]` |    true  |  netplan configuration file |
-| [manage_netplan_networkmanager_pkg](vars/main.yml#L11)   | list   | `[{'name': 'network', 'version': 'latest', 'state': 'present'}]` |    None  |  None |
+| [manage_netplan_packages](vars/main.yml#L7)   | list   | `[{'name': 'netplan.io', 'version': 'latest', 'state': 'present'}]` |    false  |  Netplan packages |
+| [manage_netplan_networkmanager_pkg](vars/main.yml#L15)   | list   | `[{'name': 'network', 'version': 'latest', 'state': 'present'}]` |    false  |  NetworkManager packages |
 <details>
 <summary><b>🖇️ Full Descriptions for vars in vars/main.yml</b></summary>
 <br>
-<b>manage_netplan_packages:</b> This file is used to configure the netplan module.
+<b>manage_netplan_packages:</b> List of packages necessary for Netplan functionality
+<br>
+<b>manage_netplan_networkmanager_pkg:</b> List of packages required to enable NetworkManager functionality
 <br>
 <br>
 </details>

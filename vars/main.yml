@@ -1,13 +1,17 @@
 ---
 # vars file for manage_netplan
 
-# title: netplan configuration file
-# description: This file is used to configure the netplan module.
-# required: true
+# title: Netplan packages
+# required: false
+# description: List of packages necessary for Netplan functionality
 manage_netplan_packages:
   - name: netplan.io
     version: latest
     state: present
+
+# title: NetworkManager packages
+# required: false
+# description: List of packages required to enable NetworkManager functionality
 manage_netplan_networkmanager_pkg:
   - name: network
     version: latest
