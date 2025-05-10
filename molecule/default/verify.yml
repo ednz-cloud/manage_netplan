@@ -16,11 +16,6 @@
             path: "/etc/netplan/ansible-config.yaml"
           register: stat_etc_netplan_ansible_config_yml
 
-        - name: "Slurp file /etc/netplan/ansible-config.yaml"
-          ansible.builtin.slurp:
-            src: "/etc/netplan/ansible-config.yaml"
-          register: slurp_etc_netplan_ansible_config_yml
-
         - name: "Verify directory /etc/netplan"
           ansible.builtin.assert:
             that:
@@ -29,9 +24,4 @@
               - stat_etc_netplan.stat.pw_name == 'root'
               - stat_etc_netplan.stat.gr_name == 'root'
               - stat_etc_netplan.stat.mode == '0755'
-              - stat_etc_netplan_ansible_config_yml.stat.exists
-              - stat_etc_netplan_ansible_config_yml.stat.isreg
-              - stat_etc_netplan_ansible_config_yml.stat.pw_name == 'root'
-              - stat_etc_netplan_ansible_config_yml.stat.gr_name == 'root'
-              - stat_etc_netplan_ansible_config_yml.stat.mode == '0644'
-              - slurp_etc_netplan_ansible_config_yml.content != ''
+              - not stat_etc_netplan_ansible_config_yml.stat.exists

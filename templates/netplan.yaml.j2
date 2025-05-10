@@ -1,31 +1,6 @@
----
 # {{ ansible_managed }}
-network:
-  version: {{ manage_netplan_configuration['network']['version']|default('2') }}
-{% if manage_netplan_renderer is not none %}
-  renderer: {{ manage_netplan_renderer }}
-{% endif %}
-{% if manage_netplan_configuration['network']['ethernets'] is defined %}
-  ethernets:
-{{ manage_netplan_configuration['network']['ethernets']|to_nice_yaml|indent(4, true) }}
-{% endif %}
-{% if manage_netplan_configuration['network']['wifis'] is defined %}
-  wifis:
-{{ manage_netplan_configuration['network']['wifis']|to_nice_yaml|indent(4, true) }}
-{% endif %}
-{% if manage_netplan_configuration['network']['bonds'] is defined %}
-  bonds:
-{{ manage_netplan_configuration['network']['bonds']|to_nice_yaml|indent(4, true) }}
-{% endif %}
-{% if manage_netplan_configuration['network']['bridges'] is defined %}
-  bridges:
-{{ manage_netplan_configuration['network']['bridges']|to_nice_yaml|indent(4, true) }}
-{% endif %}
-{% if manage_netplan_configuration['network']['vlans'] is defined %}
-  vlans:
-{{ manage_netplan_configuration['network']['vlans']|to_nice_yaml|indent(4, true) }}
-{% endif %}
-{% if manage_netplan_configuration['network']['tunnels'] is defined %}
-  tunnels:
-{{ manage_netplan_configuration['network']['tunnels']|to_nice_yaml|indent(4, true) }}
-{% endif %}
+
+{%- set updated_network = manage_netplan_configuration.network | combine({'renderer': manage_netplan_renderer}) -%}
+{% set updated_config = manage_netplan_configuration | combine({'network': updated_network}) %}
+
+{{ updated_config | to_nice_yaml(indent=2, width=80) }}
