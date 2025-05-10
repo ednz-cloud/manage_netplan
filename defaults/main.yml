@@ -22,13 +22,6 @@ manage_netplan_renderer: networkd
 # Set to true to remove all configurations in /etc/netplan.
 manage_netplan_remove_existing: false
 
-# title: Netplan search domain
-# required: true
-# description-lines:
-# Sets the search domain for hostname resolution in the Netplan configuration.
-# The search domain is used for resolving unqualified hostnames.
-manage_netplan_search_domain: example.org
-
 # title: Manage Netplan installation
 # required: false
 # description-lines:

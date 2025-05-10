@@ -31,10 +31,9 @@ Description: Install and configure network interfaces using netplan for debian-b
 | [manage_netplan_config_file](defaults/main.yml#L9)   | str   | `/etc/netplan/ansible-config.yaml` |    false  |  Netplan configuration file |
 | [manage_netplan_renderer](defaults/main.yml#L16)   | str   | `networkd` |    false  |  Netplan renderer |
 | [manage_netplan_remove_existing](defaults/main.yml#L23)   | bool   | `False` |    false  |  Remove existing configurations |
-| [manage_netplan_search_domain](defaults/main.yml#L30)   | str   | `example.org` |    true  |  Netplan search domain |
-| [manage_netplan_install](defaults/main.yml#L37)   | bool   | `True` |    false  |  Manage Netplan installation |
-| [manage_netplan_apply](defaults/main.yml#L44)   | bool   | `False` |    false  |  Apply Netplan configuration |
-| [manage_netplan_configuration](defaults/main.yml#L51)   | dict   | `{}` |    true  |  Netplan configuration |
+| [manage_netplan_install](defaults/main.yml#L30)   | bool   | `True` |    false  |  Manage Netplan installation |
+| [manage_netplan_apply](defaults/main.yml#L37)   | bool   | `False` |    false  |  Apply Netplan configuration |
+| [manage_netplan_configuration](defaults/main.yml#L44)   | dict   | `{}` |    true  |  Netplan configuration |
 <details>
 <summary><b>🖇️ Full descriptions for vars in defaults/main.yml</b></summary>
 <br>
@@ -46,9 +45,6 @@ Possible values are 'NetworkManager' or 'networkd'.<br>
 <br>
 <b>manage_netplan_remove_existing:</b> Determines whether to delete all existing Netplan configurations before applying new ones.<br>
 Set to true to remove all configurations in /etc/netplan.<br>
-<br>
-<b>manage_netplan_search_domain:</b> Sets the search domain for hostname resolution in the Netplan configuration.<br>
-The search domain is used for resolving unqualified hostnames.<br>
 <br>
 <b>manage_netplan_install:</b> Controls whether the Netplan package should be installed.<br>
 Set to true to ensure Netplan is installed.<br>
